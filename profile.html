@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile - My Portfolio</title>
+    <style>
+        /* ========================================================
+           CSS UTAMA (Tema Biru Laut / Sea Blue)
+           ======================================================== */
+        body {
+            margin: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #f5f7fa 0%, #e4e8f0 100%);
+            color: #333;
+            min-height: 100vh;
+        }
+
+        /* Navigation Bar */
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+            padding: 15px 30px;
+            color: white;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+        .logo {
+            font-size: 24px;
+            font-weight: 700;
+            letter-spacing: 1px;
+        }
+        .nav-links {
+            list-style: none;
+            display: flex;
+            margin: 0;
+            padding: 0;
+        }
+        .nav-links li {
+            margin-left: 25px;
+        }
+        .nav-links a {
+            color: rgba(255, 255, 255, 0.8);
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            padding: 5px 0;
+        }
+        .nav-links a:hover {
+            color: #f1c40f;
+        }
+        .nav-links a.active {
+            color: #f1c40f;
+            border-bottom: 2px solid #f1c40f;
+        }
+
+        /* ========================================================
+           STYLE KHUSUS PROFILE (Biodata Card & Education Timeline)
+           ======================================================== */
+        .profile-container {
+            max-width: 750px;
+            margin: 50px auto;
+            background: white;
+            padding: 40px;
+            border-radius: 16px;
+            box-shadow: 0 10px 30px rgba(30, 60, 114, 0.08);
+            border: 1px solid rgba(30, 60, 114, 0.05);
+            text-align: center;
+        }
+        .profile-img {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 5px solid #2a5298;
+            box-shadow: 0 6px 15px rgba(0,0,0,0.15);
+            margin-bottom: 20px;
+        }
+        .profile-container h2 {
+            color: #1e3c72;
+            margin-top: 0;
+            font-size: 28px;
+            margin-bottom: 5px;
+        }
+        .profile-container .tagline {
+            color: #e67e22;
+            font-weight: bold;
+            margin-bottom: 30px;
+            font-size: 15px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        /* Jadual Maklumat */
+        .info-table {
+            width: 100%;
+            margin: 20px 0 35px 0;
+            border-collapse: collapse;
+            text-align: left;
+        }
+        .info-table th, .info-table td {
+            padding: 14px 15px;
+            border-bottom: 1px solid #eef2f7;
+        }
+        .info-table th {
+            color: #1e3c72;
+            width: 35%;
+            font-weight: 600;
+        }
+        .info-table td {
+            color: #555;
+        }
+
+        /* Bahagian Latar Belakang Pendidikan */
+        .section-title {
+            color: #1e3c72;
+            text-align: left;
+            border-bottom: 2px solid #dde3ec;
+            padding-bottom: 8px;
+            margin-top: 30px;
+            font-size: 20px;
+        }
+
+        .timeline {
+            margin: 20px 0;
+            padding: 0;
+            list-style: none;
+            text-align: left;
+        }
+        .timeline-item {
+            position: relative;
+            padding-left: 30px;
+            margin-bottom: 20px;
+            border-left: 3px solid #2a5298;
+        }
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -9px;
+            top: 4px;
+            width: 15px;
+            height: 15px;
+            border-radius: 50%;
+            background: #e67e22;
+            border: 3px solid white;
+            box-shadow: 0 0 5px rgba(0,0,0,0.2);
+        }
+        .timeline-year {
+            font-weight: bold;
+            color: #e67e22;
+            font-size: 14px;
+        }
+        .timeline-school {
+            font-weight: 600;
+            color: #1e3c72;
+            font-size: 16px;
+            margin: 2px 0;
+        }
+        .timeline-desc {
+            color: #666;
+            font-size: 14px;
+            margin: 0;
+        }
+
+        /* Bahagian Kemahiran (Skills Badge) */
+        .badge-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 15px;
+        }
+        .skill-badge {
+            background: #eef2f7;
+            color: #2a5298;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 14px;
+            font-weight: 600;
+            border: 1px solid rgba(42, 82, 152, 0.1);
+            transition: all 0.3s;
+        }
+        .skill-badge:hover {
+            background: #2a5298;
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 20px;
+            background: #1e3c72;
+            color: white;
+            margin-top: 60px;
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <nav class="navbar">
+            <div class="logo">Portfolio</div>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="profile.html" class="active">Profile</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li><a href="game.html">JS Game</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <div class="profile-container">
+            <!-- Gambar dari image_3e55a1.png -->
+            <img src="gambar_adam.jpeg" alt="Profile Picture" class="profile-img" onerror="this.src='https://cdn-icons-png.flaticon.com/512/3135/3135715.png'">
+            <h2>Adam Zakwan Bin Norisham</h2>
+            <div class="tagline">Diploma in Electronic Engineering (IoT)</div>
+            
+            <h3 class="section-title">Maklumat Pelajar</h3>
+            <table class="info-table">
+                <tr>
+                    <th>No. ID Pelajar</th>
+                    <td>DFI2508001</td>
+                </tr>
+                <tr>
+                    <th>Kelas</th>
+                    <td>2C</td>
+                </tr>
+                <tr>
+                    <th>Institusi Semasa</th>
+                    <td>TVETMARA Petaling Jaya </td>
+                </tr>
+                <tr>
+                    <th>Pengkhususan</th>
+                    <td>Internet of Things (IoT)</td>
+                </tr>
+            </table>
+
+            <h3 class="section-title">Sejarah Pendidikan</h3>
+            <div class="timeline">
+                <!-- Pendidikan Semasa -->
+                <div class="timeline-item">
+                    <div class="timeline-year">2025 - Kini</div>
+                    <div class="timeline-school">TVETMARA Petaling Jaya</div>
+                    <p class="timeline-desc"> Pengajian peringkat Diploma Electronics Engineering (IoT).</p>
+                </div>
+                <!-- SMK Tunku Abd. Aziz -->
+                <div class="timeline-item">
+                    <div class="timeline-year">2023 - 2025</div>
+                    <div class="timeline-school">Sekolah Menengah Kebangsaan Tunku Abd. Aziz</div>
+                    <p class="timeline-desc">Pendidikan Menengah Atas - Berkelulusan Sijil Pelajaran Malaysia (SPM).</p>
+                </div>
+                <!-- SMA Nahdzah -->
+                <div class="timeline-item">
+                    <div class="timeline-year">2020 - 2022</div>
+                    <div class="timeline-school">Sekolah Menengah Agama Nahdzah</div>
+                    <p class="timeline-desc">Pendidikan Menengah Rendah.</p>
+                </div>
+                <!-- SK Haji Hassan Itam -->
+                <div class="timeline-item">
+                    <div class="timeline-year">2014 - 2019</div>
+                    <div class="timeline-school">Sekolah Kebangsaan Haji Hassan Itam</div>
+                    <p class="timeline-desc">Pendidikan Rendah - Berkelulusan Ujian Pencapaian Sekolah Rendah (UPSR).</p>
+                </div>
+            </div>
+
+            <h3 class="section-title">Kemahiran Teknikal</h3>
+            <div class="badge-container">
+                <span class="skill-badge">HTML5 & CSS3</span>
+                <span class="skill-badge">JavaScript (ES6)</span>
+                <span class="skill-badge">ESP32 Development</span>
+                <span class="skill-badge">PLC Programming (Omron)</span>
+                <span class="skill-badge">IoT Cloud Integration</span>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 TVETMARA Petaling Jaya. All Rights Reserved.</p>
+    </footer>
+
+</body>
+</html>

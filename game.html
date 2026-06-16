@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JS Game - My Portfolio</title>
+    <style>
+        /* ========================================================
+           CSS UTAMA (Tema Biru Laut / Sea Blue)
+           ======================================================== */
+        body {
+            margin: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #f5f7fa 0%, #e4e8f0 100%);
+            color: #333;
+            min-height: 100vh;
+            user-select: none;
+        }
+
+        /* Navigation Bar */
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+            padding: 15px 30px;
+            color: white;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+        .logo {
+            font-size: 24px;
+            font-weight: 700;
+            letter-spacing: 1px;
+        }
+        .nav-links {
+            list-style: none;
+            display: flex;
+            margin: 0;
+            padding: 0;
+        }
+        .nav-links li {
+            margin-left: 25px;
+        }
+        .nav-links a {
+            color: rgba(255, 255, 255, 0.8);
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            padding: 5px 0;
+        }
+        .nav-links a:hover {
+            color: #f1c40f;
+        }
+        .nav-links a.active {
+            color: #f1c40f;
+            border-bottom: 2px solid #f1c40f;
+        }
+
+        /* ========================================================
+           STYLE KHUSUS GAME LOMPAT-LOMPAT
+           ======================================================== */
+        .game-wrapper {
+            display: block;
+            width: 100%;
+            max-width: 600px;
+            margin: 50px auto;
+            padding: 0 20px;
+            box-sizing: border-box;
+        }
+
+        .game-container {
+            background: white;
+            padding: 30px;
+            border-radius: 16px;
+            box-shadow: 0 10px 30px rgba(30, 60, 114, 0.08);
+            border: 1px solid rgba(30, 60, 114, 0.05);
+            text-align: center;
+            box-sizing: border-box;
+            width: 100%;
+        }
+        .game-container h2 {
+            color: #1e3c72;
+            margin-top: 0;
+            font-size: 26px;
+            border-bottom: 3px solid #e67e22;
+            padding-bottom: 10px;
+            display: inline-block;
+        }
+        .game-container p {
+            color: #666;
+            font-size: 14px;
+            margin-bottom: 15px;
+        }
+
+        /* Papan Markah Digital */
+        .score-board {
+            display: flex;
+            justify-content: space-around;
+            background: #f8fafc;
+            padding: 12px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            border: 1px solid #dde3ec;
+        }
+        .score-box {
+            font-weight: 700;
+            font-size: 15px;
+            color: #2a5298;
+        }
+        .score-box span {
+            color: #e67e22;
+            font-size: 18px;
+            margin-left: 5px;
+        }
+
+        /* KAWASAN GELANGGANG GAME FIXED (Mengatasi Masalah Blank/Kosong) */
+        #gameArea {
+            width: 100%;
+            height: 220px;
+            background-color: #eef2f7 !important; /* Paksa warna latar belakang muncul */
+            border-bottom: 5px solid #1e3c72; 
+            position: relative;
+            overflow: hidden;
+            border-radius: 8px;
+            box-shadow: inset 0 4px 10px rgba(0,0,0,0.08);
+            box-sizing: border-box;
+            display: block !important; /* Elakkan elemen daripada tersembunyi */
+        }
+
+        /* Karakter Lompat */
+        #character {
+            width: 35px;
+            height: 35px;
+            background: linear-gradient(135deg, #e67e22 0%, #d35400 100%);
+            position: absolute;
+            bottom: 0;
+            left: 40px;
+            border-radius: 6px;
+            box-shadow: 0 3px 6px rgba(230, 126, 34, 0.3);
+            display: block;
+        }
+
+        /* Animasi Lompat */
+        .jump-animation {
+            animation: jump 0.45s linear;
+        }
+        @keyframes jump {
+            0% { bottom: 0; }
+            30% { bottom: 110px; }
+            50% { bottom: 130px; }
+            70% { bottom: 110px; }
+            100% { bottom: 0; }
+        }
+
+        /* Blok Halangan (Obstacle) */
+        #obstacle {
+            width: 22px;
+            height: 40px;
+            background: linear-gradient(to top, #1e3c72, #2a5298);
+            position: absolute;
+            bottom: 0;
+            left: 100%; /* Mula di hujung kanan kawasan game */
+            border-radius: 5px 5px 0 0;
+            display: block;
+        }
+
+        /* Animasi Pergerakan Halangan */
+        .block-animation {
+            animation: moveObstacle 1.4s infinite linear;
+        }
+        @keyframes moveObstacle {
+            0% { left: 100%; }
+            100% { left: -30px; }
+        }
+
+        /* Butang Kawalan */
+        .game-btn {
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+            color: white;
+            border: none;
+            padding: 12px 35px;
+            font-size: 15px;
+            font-weight: bold;
+            border-radius: 8px;
+            cursor: pointer;
+            margin-top: 20px;
+            box-shadow: 0 4px 15px rgba(30, 60, 114, 0.2);
+            transition: all 0.3s ease;
+        }
+        .game-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(30, 60, 114, 0.3);
+        }
+
+        .game-status {
+            margin-top: 15px;
+            font-size: 15px;
+            font-weight: 600;
+            color: #475569;
+            min-height: 24px;
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 20px;
+            background: #1e3c72;
+            color: white;
+            margin-top: 60px;
+            font-size: 14px;
+            width: 100%;
+            box-sizing: border-box;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <nav class="navbar">
+            <div class="logo">Portfolio</div>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="profile.html">Profile</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li><a href="game.html" class="active">JS Game</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <div class="game-wrapper">
+            <div class="game-container">
+                <h2>Sea Runner Game 🌊</h2>
+                <p>Tekan butang <b>SPACEBAR</b> pada keyboard atau <b>KLIK/SENTUH</b> kawasan kelabu di bawah untuk melompat!</p>
+                
+                <div class="score-board">
+                    <div class="score-box">Skor Semasa: <span id="currentScore">0</span></div>
+                    <div class="score-box">Skor Tertinggi: <span id="highScore">0</span></div>
+                </div>
+
+                <div id="gameArea" onclick="triggerJump()">
+                    <div id="character"></div>
+                    <div id="obstacle"></div>
+                </div>
+
+                <button id="startBtn" class="game-btn" onclick="startGame()">Mula Permainan</button>
+                <div id="statusMessage" class="game-status">Sedia? Klik butang di atas untuk mula!</div>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 TVETMARA Petaling Jaya. All Rights Reserved.</p>
+    </footer>
+
+    <script>
+        const character = document.getElementById("character");
+        const obstacle = document.getElementById("obstacle");
+        const scoreDisplay = document.getElementById("currentScore");
+        const highScoreDisplay = document.getElementById("highScore");
+        const statusMessage = document.getElementById("statusMessage");
+        const startBtn = document.getElementById("startBtn");
+
+        let score = 0;
+        let highScore = 0;
+        let isPlaying = false;
+        let scoreInterval;
+        let checkCollisionInterval;
+
+        function triggerJump() {
+            if (!isPlaying) return;
+            if (!character.classList.contains("jump-animation")) {
+                character.classList.add("jump-animation");
+                
+                setTimeout(() => {
+                    character.classList.remove("jump-animation");
+                }, 450);
+            }
+        }
+
+        document.addEventListener("keydown", function(event) {
+            if (event.code === "Space") {
+                event.preventDefault(); 
+                triggerJump();
+            }
+        });
+
+        function startGame() {
+            if (isPlaying) return; 
+
+            isPlaying = true;
+            score = 0;
+            scoreDisplay.innerText = score;
+            statusMessage.innerText = "🏃 Lompat! Jaga-jaga halangan datang!";
+            statusMessage.style.color = "#2a5298";
+            startBtn.style.display = "none"; 
+
+            // Aktifkan pergerakan halangan
+            obstacle.classList.add("block-animation");
+
+            // Tambah skor berterusan
+            scoreInterval = setInterval(() => {
+                score++;
+                scoreDisplay.innerText = score;
+            }, 100);
+
+            // Pengesan Pelanggaran Pintar mengikut lebar responsif gameArea
+            checkCollisionInterval = setInterval(() => {
+                let characterBottom = parseInt(window.getComputedStyle(character).getPropertyValue("bottom"));
+                let obstacleLeft = parseInt(window.getComputedStyle(obstacle).getPropertyValue("left"));
+
+                // Mengesan kedudukan pertembungan kotak piksel
+                if (obstacleLeft > 40 && obstacleLeft < 75 && characterBottom <= 40) {
+                    gameOver();
+                }
+            }, 10);
+        }
+
+        function gameOver() {
+            isPlaying = false;
+            clearInterval(scoreInterval);
+            clearInterval(checkCollisionInterval);
+            
+            obstacle.classList.remove("block-animation");
+            
+            statusMessage.innerText = "💥 GAME OVER! Sila cuba lagi.";
+            statusMessage.style.color = "#e74c3c";
+            startBtn.innerText = "Main Semula";
+            startBtn.style.display = "inline-block"; 
+
+            if (score > highScore) {
+                highScore = score;
+                highScoreDisplay.innerText = highScore;
+            }
+        }
+    </script>
+</body>
+</html>
