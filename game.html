@@ -6,7 +6,7 @@
     <title>JS Game - My Portfolio</title>
     <style>
         /* ========================================================
-           CSS UTAMA (Tema Biru Laut / Sea Blue)
+           MAIN CSS (Sea Blue Theme)
            ======================================================== */
         body {
             margin: 0;
@@ -57,7 +57,7 @@
         }
 
         /* ========================================================
-           STYLE KHUSUS GAME LOMPAT-LOMPAT
+           JUMPING GAME CUSTOM STYLES
            ======================================================== */
         .game-wrapper {
             display: block;
@@ -92,7 +92,7 @@
             margin-bottom: 15px;
         }
 
-        /* Papan Markah Digital */
+        /* Digital Score Board */
         .score-board {
             display: flex;
             justify-content: space-around;
@@ -113,21 +113,21 @@
             margin-left: 5px;
         }
 
-        /* KAWASAN GELANGGANG GAME FIXED (Mengatasi Masalah Blank/Kosong) */
+        /* Fixed Game Arena Area */
         #gameArea {
             width: 100%;
             height: 220px;
-            background-color: #eef2f7 !important; /* Paksa warna latar belakang muncul */
+            background-color: #eef2f7 !important;
             border-bottom: 5px solid #1e3c72; 
             position: relative;
             overflow: hidden;
             border-radius: 8px;
             box-shadow: inset 0 4px 10px rgba(0,0,0,0.08);
             box-sizing: border-box;
-            display: block !important; /* Elakkan elemen daripada tersembunyi */
+            display: block !important;
         }
 
-        /* Karakter Lompat */
+        /* Jumping Character */
         #character {
             width: 35px;
             height: 35px;
@@ -140,7 +140,7 @@
             display: block;
         }
 
-        /* Animasi Lompat */
+        /* Jump Animation */
         .jump-animation {
             animation: jump 0.45s linear;
         }
@@ -152,19 +152,19 @@
             100% { bottom: 0; }
         }
 
-        /* Blok Halangan (Obstacle) */
+        /* Obstacle Block */
         #obstacle {
             width: 22px;
             height: 40px;
             background: linear-gradient(to top, #1e3c72, #2a5298);
             position: absolute;
             bottom: 0;
-            left: 100%; /* Mula di hujung kanan kawasan game */
+            left: 100%;
             border-radius: 5px 5px 0 0;
             display: block;
         }
 
-        /* Animasi Pergerakan Halangan */
+        /* Obstacle Movement Animation */
         .block-animation {
             animation: moveObstacle 1.4s infinite linear;
         }
@@ -173,7 +173,7 @@
             100% { left: -30px; }
         }
 
-        /* Butang Kawalan */
+        /* Control Buttons */
         .game-btn {
             background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
             color: white;
@@ -231,11 +231,11 @@
         <div class="game-wrapper">
             <div class="game-container">
                 <h2>Sea Runner Game 🌊</h2>
-                <p>Tekan butang <b>SPACEBAR</b> pada keyboard atau <b>KLIK/SENTUH</b> kawasan kelabu di bawah untuk melompat!</p>
+                <p>Press the <b>SPACEBAR</b> on your keyboard or <b>CLICK/TAP</b> inside the arena to jump!</p>
                 
                 <div class="score-board">
-                    <div class="score-box">Skor Semasa: <span id="currentScore">0</span></div>
-                    <div class="score-box">Skor Tertinggi: <span id="highScore">0</span></div>
+                    <div class="score-box">Current Score: <span id="currentScore">0</span></div>
+                    <div class="score-box">High Score: <span id="highScore">0</span></div>
                 </div>
 
                 <div id="gameArea" onclick="triggerJump()">
@@ -243,8 +243,8 @@
                     <div id="obstacle"></div>
                 </div>
 
-                <button id="startBtn" class="game-btn" onclick="startGame()">Mula Permainan</button>
-                <div id="statusMessage" class="game-status">Sedia? Klik butang di atas untuk mula!</div>
+                <button id="startBtn" class="game-btn" onclick="startGame()">Start Game</button>
+                <div id="statusMessage" class="game-status">Ready? Click the button above to start!</div>
             </div>
         </div>
     </main>
@@ -291,25 +291,25 @@
             isPlaying = true;
             score = 0;
             scoreDisplay.innerText = score;
-            statusMessage.innerText = "🏃 Lompat! Jaga-jaga halangan datang!";
+            statusMessage.innerText = "🏃 Jump! Watch out for oncoming obstacles!";
             statusMessage.style.color = "#2a5298";
             startBtn.style.display = "none"; 
 
-            // Aktifkan pergerakan halangan
+            // Activate obstacle movement
             obstacle.classList.add("block-animation");
 
-            // Tambah skor berterusan
+            // Increment score continuously
             scoreInterval = setInterval(() => {
                 score++;
                 scoreDisplay.innerText = score;
             }, 100);
 
-            // Pengesan Pelanggaran Pintar mengikut lebar responsif gameArea
+            // Responsive collision detection based on arena boundaries
             checkCollisionInterval = setInterval(() => {
                 let characterBottom = parseInt(window.getComputedStyle(character).getPropertyValue("bottom"));
                 let obstacleLeft = parseInt(window.getComputedStyle(obstacle).getPropertyValue("left"));
 
-                // Mengesan kedudukan pertembungan kotak piksel
+                // Pixel-perfect alignment for hitting thresholds
                 if (obstacleLeft > 40 && obstacleLeft < 75 && characterBottom <= 40) {
                     gameOver();
                 }
@@ -323,9 +323,9 @@
             
             obstacle.classList.remove("block-animation");
             
-            statusMessage.innerText = "💥 GAME OVER! Sila cuba lagi.";
+            statusMessage.innerText = "💥 GAME OVER! Give it another shot.";
             statusMessage.style.color = "#e74c3c";
-            startBtn.innerText = "Main Semula";
+            startBtn.innerText = "Play Again";
             startBtn.style.display = "inline-block"; 
 
             if (score > highScore) {
