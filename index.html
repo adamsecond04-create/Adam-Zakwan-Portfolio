@@ -5,9 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Home - My Portfolio</title>
     <style>
-        /* ========================================================
-           CSS UTAMA (Tema Biru Laut / Sea Blue)
-           ======================================================== */
         body {
             margin: 0;
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -17,8 +14,6 @@
             display: flex;
             flex-direction: column;
         }
-
-        /* Navigation Bar */
         .navbar {
             display: flex;
             justify-content: space-between;
@@ -28,56 +23,33 @@
             color: white;
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
         }
-        .logo {
-            font-size: 24px;
-            font-weight: 700;
-            letter-spacing: 1px;
-        }
-        .nav-links {
-            list-style: none;
-            display: flex;
-            margin: 0;
-            padding: 0;
-        }
-        .nav-links li {
-            margin-left: 25px;
-        }
-        .nav-links a {
-            color: rgba(255, 255, 255, 0.8);
-            text-decoration: none;
-            font-weight: 500;
-            transition: all 0.3s ease;
-            padding: 5px 0;
-        }
-        .nav-links a:hover {
-            color: #f1c40f;
-        }
-        .nav-links a.active {
-            color: #f1c40f;
-            border-bottom: 2px solid #f1c40f;
-        }
+        .logo { font-size: 24px; font-weight: 700; letter-spacing: 1px; }
+        .nav-links { list-style: none; display: flex; margin: 0; padding: 0; }
+        .nav-links li { margin-left: 25px; }
+        .nav-links a { color: rgba(255, 255, 255, 0.8); text-decoration: none; font-weight: 500; transition: all 0.3s ease; padding: 5px 0; }
+        .nav-links a:hover, .nav-links a.active { color: #f1c40f; }
+        .nav-links a.active { border-bottom: 2px solid #f1c40f; }
 
-        /* ========================================================
-           STYLE KHUSUS INDEX (Hero Section & Welcome)
-           ======================================================== */
+        /* Hero Section Updated with Profile Pic */
         .hero {
-            background: linear-gradient(rgba(30, 60, 114, 0.85), rgba(42, 82, 152, 0.85)), url('https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=1200&q=80') no-repeat center center/cover;
+            background: linear-gradient(rgba(30, 60, 114, 0.9), rgba(42, 82, 152, 0.9)), url('https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=1200&q=80') no-repeat center center/cover;
             color: white;
             text-align: center;
-            padding: 100px 20px;
+            padding: 60px 20px;
             box-shadow: inset 0 -5px 15px rgba(0,0,0,0.1);
         }
-        .hero h1 {
-            font-size: 42px;
+        .hero-img {
+            width: 130px;
+            height: 130px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 4px solid #f1c40f;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
             margin-bottom: 15px;
-            letter-spacing: 1px;
         }
-        .hero p {
-            font-size: 18px;
-            max-width: 600px;
-            margin: 0 auto 30px auto;
-            color: #e2e8f0;
-        }
+        .hero h1 { font-size: 36px; margin: 10px 0 5px 0; letter-spacing: 1px; }
+        .hero .ambition { font-size: 18px; color: #f1c40f; font-weight: 600; margin-bottom: 15px; text-transform: uppercase; }
+        .hero p { font-size: 16px; max-width: 600px; margin: 0 auto 25px auto; color: #e2e8f0; line-height: 1.5; }
         .cta-btn {
             display: inline-block;
             background: linear-gradient(135deg, #e67e22 0%, #d35400 100%);
@@ -89,17 +61,9 @@
             box-shadow: 0 4px 15px rgba(230, 126, 34, 0.3);
             transition: all 0.3s ease;
         }
-        .cta-btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 6px 20px rgba(230, 126, 34, 0.5);
-        }
+        .cta-btn:hover { transform: translateY(-3px); box-shadow: 0 6px 20px rgba(230, 126, 34, 0.5); }
 
-        .main-content {
-            max-width: 900px;
-            margin: 50px auto;
-            padding: 0 20px;
-            flex: 1;
-        }
+        .main-content { max-width: 900px; margin: 40px auto; padding: 0 20px; flex: 1; }
         .intro-card {
             background: white;
             padding: 35px;
@@ -108,28 +72,9 @@
             border: 1px solid rgba(30, 60, 114, 0.05);
             text-align: center;
         }
-        .intro-card h2 {
-            color: #1e3c72;
-            margin-top: 0;
-            border-bottom: 3px solid #e67e22;
-            padding-bottom: 10px;
-            display: inline-block;
-        }
-        .intro-card p {
-            color: #555;
-            line-height: 1.8;
-            font-size: 16px;
-        }
-
-        /* Footer */
-        footer {
-            text-align: center;
-            padding: 20px;
-            background: #1e3c72;
-            color: white;
-            margin-top: auto;
-            font-size: 14px;
-        }
+        .intro-card h2 { color: #1e3c72; margin-top: 0; border-bottom: 3px solid #e67e22; padding-bottom: 10px; display: inline-block; }
+        .intro-card p { color: #555; line-height: 1.8; font-size: 16px; text-align: justify; }
+        footer { text-align: center; padding: 20px; background: #1e3c72; color: white; margin-top: auto; font-size: 14px; }
     </style>
 </head>
 <body>
@@ -147,16 +92,19 @@
     </header>
 
     <section class="hero">
-        <h1>Selamat Datang ke Portfolio Digital Saya</h1>
-        <p>Bakal Menerajui Dunia Pada Masa Akan Datang.</p>
+        <!-- Letakkan gambar profil hang di sini -->
+        <img src="gambar_adam.jpeg" alt="Adam Zakwan" class="hero-img" onerror="this.src='https://cdn-icons-png.flaticon.com/512/3135/3135715.png'">
+        <h1>Adam Zakwan Bin Norisham</h1>
+        <div class="ambition">Aspiring Electronic Engineer & IoT</div>
+<p>A centralized hub for IoT engineering projects, industrial automation systems, and next-generation interactive web applications.</p>
         <a href="profile.html" class="cta-btn">Kenali Saya Lebih Lanjut</a>
     </section>
 
     <main class="main-content">
-        <div class="intro-card">
-            <h2>Mengenai Laman Web Ini</h2>
-            <p>Laman web ini ialah projek portfolio digital yang menggabungkan elemen reka bentuk moden dan interaktiviti penuh. Menggunakan struktur HTML5 yang kemas dan penggayaan estetik CSS3 bertemakan Premium Sea Blue, portfolio ini turut dimantapkan dengan fungsi JavaScript masa nyata termasuk borang hubungan pintar berserta sistem validasi dan sebuah permainan mini interaktif.</p>
-        </div>
+<div class="intro-card">
+    <h2>Mengenai Laman Web Ini</h2>
+    <p>Selamat datang ke hab pembangunan web saya. Portfolio responsif ini menggabungkan struktur <b>HTML5</b> yang kemas, penggayaan <b>CSS3</b> tersuai yang diispirasikan oleh estetika laut dalam, serta logik <b>JavaScript</b> yang mantap. Daripada sistem pengesahan input yang dinamik sehinggalah kepada permainan mini interaktif, setiap elemen direka khas untuk menawarkan pengalaman digital yang optimum dan menarik.</p>
+</div>
     </main>
 
     <footer>
