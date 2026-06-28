@@ -6,7 +6,7 @@
     <title>Contact - My Portfolio</title>
     <style>
         /* ========================================================
-           CSS UTAMA (Tema Biru Laut / Sea Blue)
+           MAIN CSS (Sea Blue Theme)
            ======================================================== */
         body {
             margin: 0;
@@ -16,7 +16,7 @@
             min-height: 100vh;
         }
 
-        /* Navigation Bar - Dipercantik dengan warna Biru Laut */
+        /* Navigation Bar */
         .navbar {
             display: flex;
             justify-content: space-between;
@@ -69,7 +69,7 @@
         }
 
         /* ========================================================
-           CSS KHUSUS UNTUK FORM CONTAINER & INPUTS
+           FORM CONTAINER & INPUTS CSS
            ======================================================== */
         .form-container {
             max-width: 550px;
@@ -84,7 +84,7 @@
             color: #1e3c72;
             margin-top: 0;
             font-size: 26px;
-            border-bottom: 3px solid #e67e22; /* Warna oren kontra sebagai penyeri tema laut */
+            border-bottom: 3px solid #e67e22;
             padding-bottom: 12px;
         }
         .form-container p {
@@ -104,7 +104,6 @@
             font-size: 14px;
         }
         
-        /* Kotak input dengan efek glow lembut apabila difokus */
         .form-group input[type="text"],
         .form-group input[type="email"],
         .form-group input[type="password"],
@@ -126,14 +125,12 @@
             box-shadow: 0 0 8px rgba(42, 82, 152, 0.15);
         }
         
-        /* Elemen fail input diperkemas */
         .form-group input[type="file"] {
             padding: 8px;
             background: #fff;
             cursor: pointer;
         }
 
-        /* Gaya untuk radio & checkbox */
         .radio-inline, .checkbox-inline {
             display: inline-flex;
             align-items: center;
@@ -147,14 +144,14 @@
             margin-right: 8px;
             width: 16px;
             height: 16px;
-            accent-color: #2a5298; /* Menukarkan warna bulatan radio/tick mengikut tema */
+            accent-color: #2a5298;
         }
         .checkbox-inline {
             line-height: 1.4;
             font-size: 14px;
         }
 
-        /* Mesej Ralat (Error Message) */
+        /* Error Messages */
         .error-msg {
             color: #e74c3c;
             font-size: 13px;
@@ -168,7 +165,7 @@
             to { opacity: 1; transform: translateY(0); }
         }
 
-        /* Butang Submit Premium (Warna Jingga Kontra / Sunset Orange) */
+        /* Submit Button */
         .submit-btn {
             background: linear-gradient(135deg, #e67e22 0%, #d35400 100%);
             color: white;
@@ -209,62 +206,62 @@
 
     <main>
         <div class="form-container">
-            <h2>Borang Hubungan (Contact Form)</h2>
-            <p>Sila isi maklumat di bawah dengan lengkap. JavaScript akan menyemak kesahihan input anda secara terus sebelum penghantaran dibuat.</p>
+            <h2>Contact Form</h2>
+            <p>Please fill out the form below completely. JavaScript will validate your inputs in real-time before the form is submitted.</p>
 
             <form id="portfolioForm" onsubmit="return validateContactForm(event)">
                 
                 <div class="form-group">
-                    <label for="fullName">Nama Penuh:</label>
-                    <input type="text" id="fullName" placeholder="Masukkan nama penuh anda (Min 3 huruf)">
-                    <div class="error-msg" id="nameError">⚠️ Nama penuh wajib diisi (Sekurang-kurangnya 3 huruf).</div>
+                    <label for="fullName">Full Name:</label>
+                    <input type="text" id="fullName" placeholder="Enter your full name (Min. 3 characters)">
+                    <div class="error-msg" id="nameError">⚠️ Full name is required (at least 3 characters).</div>
                 </div>
 
                 <div class="form-group">
-                    <label for="userEmail">Alamat E-mel:</label>
-                    <input type="email" id="userEmail" placeholder="contoh@email.com">
-                    <div class="error-msg" id="emailError">⚠️ Sila masukkan format e-mel yang sah (mesti ada @ dan .com).</div>
+                    <label for="userEmail">Email Address:</label>
+                    <input type="email" id="userEmail" placeholder="name@example.com">
+                    <div class="error-msg" id="emailError">⚠️ Please enter a valid email address (must include @ and .com).</div>
                 </div>
 
                 <div class="form-group">
-                    <label for="userPassword">Kata Laluan:</label>
-                    <input type="password" id="userPassword" placeholder="Minimum 6 aksara">
-                    <div class="error-msg" id="passwordError">⚠️ Kata laluan wajib diisi dan mestilah sekurang-kurangnya 6 aksara.</div>
+                    <label for="userPassword">Password:</label>
+                    <input type="password" id="userPassword" placeholder="Minimum 6 characters">
+                    <div class="error-msg" id="passwordError">⚠️ Password is required and must be at least 6 characters long.</div>
                 </div>
 
                 <div class="form-group">
-                    <label for="userDOB">Tarikh Lahir:</label>
+                    <label for="userDOB">Date of Birth:</label>
                     <input type="date" id="userDOB">
-                    <div class="error-msg" id="dobError">⚠️ Sila pilih tarikh lahir anda yang sah.</div>
+                    <div class="error-msg" id="dobError">⚠️ Please select a valid date of birth.</div>
                 </div>
 
                 <div class="form-group">
-                    <label>Jantina:</label>
+                    <label>Gender:</label>
                     <div style="margin-top: 5px;">
                         <label class="radio-inline">
-                            <input type="radio" id="genderMale" name="userGender" value="Lelaki"> Lelaki
+                            <input type="radio" id="genderMale" name="userGender" value="Male"> Male
                         </label>
                         <label class="radio-inline">
-                            <input type="radio" id="genderFemale" name="userGender" value="Perempuan"> Perempuan
+                            <input type="radio" id="genderFemale" name="userGender" value="Female"> Female
                         </label>
                     </div>
-                    <div class="error-msg" id="genderError">⚠️ Sila pilih salah satu jantina anda.</div>
+                    <div class="error-msg" id="genderError">⚠️ Please select your gender.</div>
                 </div>
 
                 <div class="form-group">
-                    <label for="userPhoto">Muat Naik Gambar Profil:</label>
+                    <label for="userPhoto">Upload Profile Picture:</label>
                     <input type="file" id="userPhoto" accept="image/*">
-                    <div class="error-msg" id="photoError">⚠️ Sila pilih satu fail gambar untuk dimuat naik.</div>
+                    <div class="error-msg" id="photoError">⚠️ Please select an image file to upload.</div>
                 </div>
 
                 <div class="form-group">
                     <label class="checkbox-inline">
-                        <input type="checkbox" id="userTerms"> Saya bersetuju dengan segala Terma & Syarat projek portfolio ini.
+                        <input type="checkbox" id="userTerms"> I agree to the Terms & Conditions of this portfolio project.
                     </label>
-                    <div class="error-msg" id="termsError">⚠️ Anda mesti menanda (tick) kotak persetujuan terma untuk meneruskan.</div>
+                    <div class="error-msg" id="termsError">⚠️ You must check the agreement box to proceed.</div>
                 </div>
 
-                <button type="submit" class="submit-btn">Hantar Maklumat</button>
+                <button type="submit" class="submit-btn">Submit Form</button>
             </form>
         </div>
     </main>
@@ -275,21 +272,22 @@
 
     <script>
         function validateContactForm(event) {
-            event.preventDefault();
+            event.preventDefault(); // Prevents the page from refreshing on submit
 
             let statusValid = true;
 
+            // Clear all previous error messages
             const semuaMesejError = document.querySelectorAll('.error-msg');
             semuaMesejError.forEach(msg => msg.style.display = 'none');
 
-            // 1. Semak Input Nama Penuh
+            // 1. Validate Full Name
             const nama = document.getElementById('fullName').value.trim();
             if (nama === "" || nama.length < 3) {
                 document.getElementById('nameError').style.display = 'block';
                 statusValid = false;
             }
 
-            // 2. Semak Input E-mel
+            // 2. Validate Email
             const email = document.getElementById('userEmail').value.trim();
             const susunanEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
             if (!susunanEmail.test(email)) {
@@ -297,21 +295,21 @@
                 statusValid = false;
             }
 
-            // 3. Semak Input Kata Laluan
+            // 3. Validate Password
             const password = document.getElementById('userPassword').value;
             if (password.length < 6) {
                 document.getElementById('passwordError').style.display = 'block';
                 statusValid = false;
             }
 
-            // 4. Semak Input Tarikh Lahir
+            // 4. Validate Date of Birth
             const tarikhLahir = document.getElementById('userDOB').value;
             if (tarikhLahir === "") {
                 document.getElementById('dobError').style.display = 'block';
                 statusValid = false;
             }
 
-            // 5. Semak Input Jantina
+            // 5. Validate Gender
             const maleChecked = document.getElementById('genderMale').checked;
             const femaleChecked = document.getElementById('genderFemale').checked;
             if (!maleChecked && !femaleChecked) {
@@ -319,23 +317,24 @@
                 statusValid = false;
             }
 
-            // 6. Semak Input Gambar
+            // 6. Validate Photo Upload
             const failGambar = document.getElementById('userPhoto').value;
             if (failGambar === "") {
                 document.getElementById('photoError').style.display = 'block';
                 statusValid = false;
             }
 
-            // 7. Semak Kotak Persetujuan
+            // 7. Validate Terms Agreement
             const kotakPersetujuan = document.getElementById('userTerms').checked;
             if (!kotakPersetujuan) {
                 document.getElementById('termsError').style.display = 'block';
                 statusValid = false;
             }
 
+            // If all validations pass successfully
             if (statusValid) {
-                alert("🎉 Pengesahan Berjaya! Semua data borang adalah sah dan sedia dihantar.");
-                document.getElementById('portfolioForm').reset(); 
+                alert("🎉 Validation Successful! All inputs are valid and the form is ready to submit.");
+                document.getElementById('portfolioForm').reset(); // Clears form fields
             }
 
             return statusValid;
